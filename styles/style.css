@@ -1,0 +1,33 @@
+/* تحسينات عامة */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #fdf8f5;
+    overflow-x: hidden;
+}
+/* تأثيرات زجاجية لشريط التنقل */
+.glass-nav {
+    background: rgba(253, 248, 245, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(176, 137, 104, 0.1);
+}
+/* تأثيرات الصور في المعرض */
+.img-hover-zoom {
+    overflow: hidden;
+}
+.img-hover-zoom img {
+    transition: transform 0.7s ease-in-out;
+}
+.img-hover-zoom:hover img {
+    transform: scale(1.1);
+}
+/* تأثير النبض البطيء للبطاقة العائمة */
+@keyframes customBounce {
+    0%, 100% { transform: translateY(-5%); }
+    50% { transform: translateY(5%); }
+}
+.animate-custom-bounce {
+    animation: customBounce 4s ease-in-out infinite;
+}
