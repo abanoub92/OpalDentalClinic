@@ -67,9 +67,9 @@ const translations = {
         'contact.addressTitle': 'عنوان العيادة',
         'contact.addressText': 'شارع الملك فهد، تقاطع شارع العروبة، مبنى الإطلالة، الدور الثالث، مدينة الرياض.',
         'contact.phoneTitle': 'أرقام التواصل',
-        'contact.phoneText': '+966 50 123 4567 <br> +966 11 987 6543',
+        'contact.phoneText': '+966 50 123 4567 | +966 11 987 6543',
         'contact.hoursTitle': 'ساعات العمل',
-        'contact.hoursText': 'السبت - الخميس: 9:00 صباحاً - 10:00 مساءً<br>الجمعة: مغلق',
+        'contact.hoursText': 'السبت - الخميس: 9:00 صباحاً - 10:00 مساءً | الجمعة: مغلق',
         'contact.formTitle': 'احجز موعدك أونلاين',
         'contact.form.nameLabel': 'الاسم بالكامل',
         'contact.form.namePlaceholder': 'أدخل اسمك الكريم',
@@ -87,7 +87,7 @@ const translations = {
 
         'footer.logo': 'عيادة <span class="text-primary">أوبال</span>',
         'footer.logo.alt': 'لوجو عيادة أوبال',
-        'footer.rights': 'جميع الحقوق محفوظة &copy; 2026 عيادة أوبال لطب الأسنان.',
+        'footer.rights': 'جميع الحقوق محفوظة © 2026 عيادة أوبال لطب الأسنان.',
         'footer.privacy': 'سياسة الخصوصية',
         'footer.terms': 'الشروط والأحكام',
     },
@@ -159,9 +159,9 @@ const translations = {
         'contact.addressTitle': 'Clinic Address',
         'contact.addressText': 'King Fahd Street, Orouba Intersection, Al-Itlala Building, 3rd Floor, Riyadh.',
         'contact.phoneTitle': 'Contact Numbers',
-        'contact.phoneText': '+966 50 123 4567 <br> +966 11 987 6543',
+        'contact.phoneText': '+966 50 123 4567 | +966 11 987 6543',
         'contact.hoursTitle': 'Working Hours',
-        'contact.hoursText': 'Sat - Thu: 9:00 AM - 10:00 PM<br>Fri: Closed',
+        'contact.hoursText': 'Sat - Thu: 9:00 AM - 10:00 PM | Fri: Closed',
         'contact.formTitle': 'Book your appointment online',
         'contact.form.nameLabel': 'Full name',
         'contact.form.namePlaceholder': 'Enter your full name',
@@ -313,4 +313,54 @@ window.addEventListener('scroll', () => {
         nav.classList.remove('shadow-md', 'py-0');
         nav.style.background = 'rgba(253, 248, 245, 0.85)';
     }
+});
+
+// تهيئة AOS
+AOS.init({ duration: 800, once: true });
+
+// تهيئة EmailJS 
+// استبدل "YOUR_PUBLIC_KEY" بالـ Public Key الخاص بك من لوحة تحكم EmailJS
+(function() {
+    emailjs.init("rQZe9oJ7qsNQWp9WH"); 
+})();
+
+// دالة إرسال الإيميل
+document.getElementById('reservationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+
+    // تغيير حالة الزر أثناء الإرسال
+    btn.disabled = true;
+    btn.classList.add('opacity-70', 'cursor-not-allowed');
+    btnText.innerText = "جاري الإرسال...";
+    btnIcon.className = "fa-solid fa-circle-notch animate-spin";
+
+    // إرسال البيانات عبر EmailJS
+    // يجب استبدال "YOUR_SERVICE_ID" و "YOUR_TEMPLATE_ID" بالقيم الحقيقية من حسابك
+    emailjs.send("service_joa7ms6", "template_oldnrrf", {
+        from_name: document.getElementById('userName').value,
+        phone: document.getElementById('userPhone').value,
+        service: document.getElementById('serviceType').value,
+        date: document.getElementById('preferredDate').value,
+        to_email: "manager@opal-clinic.com" // إيميل مسؤول الحجز (يمكن ضبطه في القالب بـ EmailJS)
+    })
+    .then(function() {
+        // في حال النجاح
+        alert("شكراً لك! تم إرسال طلب الحجز لمسؤول العيادة بنجاح. سنتواصل معك قريباً.");
+        document.getElementById('reservationForm').reset();
+    }, function(error) {
+        // في حال الفشل
+        console.error("فشل الإرسال:", error);
+        alert("نعتذر، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.");
+    })
+    .finally(function() {
+        // إعادة الزر لحالته الأصلية
+        btn.disabled = false;
+        btn.classList.remove('opacity-70', 'cursor-not-allowed');
+        btnText.innerText = "تأكيد طلب الحجز";
+        btnIcon.className = "fa-solid fa-paper-plane";
+    });
 });
