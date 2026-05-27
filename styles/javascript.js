@@ -83,7 +83,12 @@ const translations = {
         'contact.form.option5': 'أخرى',
         'contact.form.dateLabel': 'تاريخ الموعد المفضل',
         'contact.form.submitButton': 'تأكيد طلب الحجز',
+        'contact.sending': 'جاري الإرسال...',
+        'contact.form.servicePlaceholder': 'اختر الخدمة',
+        'contact.serviceRequired': 'الرجاء اختيار خدمة من القائمة قبل الإرسال.',
+        'contact.fridayHoliday': 'يوم الجمعة عطلة، الرجاء اختيار يوم آخر.',
         'contact.alertMessage': 'تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً لتأكيد الموعد.',
+        'contact.errorMessage': 'نعتذر، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.',
 
         'footer.logo': 'عيادة <span class="text-primary">أوبال</span>',
         'footer.logo.alt': 'لوجو عيادة أوبال',
@@ -175,7 +180,12 @@ const translations = {
         'contact.form.option5': 'Other',
         'contact.form.dateLabel': 'Preferred appointment date',
         'contact.form.submitButton': 'Submit appointment request',
+        'contact.sending': 'Sending...',
+        'contact.form.servicePlaceholder': 'Select a service',
+        'contact.serviceRequired': 'Please select a service from the list before submitting.',
+        'contact.fridayHoliday': 'Friday is a holiday. Please choose another day.',
         'contact.alertMessage': 'Your appointment request has been sent successfully! We will contact you soon to confirm your appointment.',
+        'contact.errorMessage': 'An error occurred while sending. Please try again or contact us.',
 
         'footer.logo': 'Opal <span class="text-primary">Clinic</span>',
         'footer.logo.alt': 'Opal Dental Clinic logo',
@@ -233,6 +243,38 @@ function setLanguage(lang) {
     if (langToggleBtn) langToggleBtn.textContent = locale['nav.language'] || 'EN';
     if (mobileLangToggleBtn) mobileLangToggleBtn.textContent = locale['nav.language'] || 'EN';
 
+    // translate elements that require setting the `value` attribute (e.g., inputs, buttons)
+    document.querySelectorAll('[data-i18n-value]').forEach(el => {
+        const key = el.dataset.i18nValue;
+        if (key && locale[key]) el.value = locale[key];
+    });
+
+    // ensure the service select (`serviceType`) has a placeholder as the first, non-value option
+    const serviceSelect = document.getElementById('serviceType');
+    if (serviceSelect) {
+        const existingPlaceholder = serviceSelect.querySelector('option[value=""]');
+        const placeholderText = locale['contact.form.servicePlaceholder'] || locale['contact.form.serviceLabel'] || '';
+        if (existingPlaceholder) {
+            existingPlaceholder.textContent = placeholderText;
+            existingPlaceholder.disabled = true;
+            existingPlaceholder.selected = true;
+        } else {
+            const ph = document.createElement('option');
+            ph.value = '';
+            ph.textContent = placeholderText;
+            ph.disabled = true;
+            ph.selected = true;
+            serviceSelect.insertBefore(ph, serviceSelect.firstChild);
+        }
+    }
+
+    // set preferred date default to today (for <input type="date" id="preferredDate">)
+    const prefDate = document.getElementById('preferredDate');
+    if (prefDate && prefDate.type === 'date') {
+        const today = new Date().toISOString().split('T')[0];
+        if (!prefDate.value) prefDate.value = today;
+    }
+
     localStorage.setItem('opal-lang', lang);
 }
 
@@ -243,6 +285,38 @@ function toggleLanguage() {
 function initLanguage() {
     const savedLang = localStorage.getItem('opal-lang');
     setLanguage(savedLang || 'ar');
+}
+
+function getTodayISO() {
+    return new Date().toISOString().split('T')[0];
+}
+
+function setPreferredDateToday() {
+    const prefDate = document.getElementById('preferredDate');
+    if (prefDate && prefDate.type === 'date') {
+        const today = getTodayISO();
+        prefDate.min = today;
+        if (!prefDate.value) prefDate.value = today;
+    }
+}
+
+function setServicePlaceholderSelected() {
+    const serviceSelect = document.getElementById('serviceType');
+    if (!serviceSelect) return;
+    // try to set empty placeholder as selected
+    const ph = serviceSelect.querySelector('option[value=""]');
+    if (ph) {
+        ph.disabled = true;
+        ph.selected = true;
+    }
+}
+
+function nextNonFriday(dateStr) {
+    const d = new Date(dateStr);
+    while (d.getDay() === 5) { // Friday
+        d.setDate(d.getDate() + 1);
+    }
+    return d.toISOString().split('T')[0];
 }
 
 function animateMobileMenu() {
@@ -273,6 +347,8 @@ function closeMobileMenu() {
 
 window.addEventListener('DOMContentLoaded', () => {
     initLanguage();
+    setPreferredDateToday();
+    setServicePlaceholderSelected();
 
     if (typeof AOS !== 'undefined') {
         AOS.init({
@@ -301,6 +377,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLanguage);
     if (mobileLangToggleBtn) mobileLangToggleBtn.addEventListener('click', toggleLanguage);
+    // prevent selecting Fridays and ensure min date
+    const prefDate = document.getElementById('preferredDate');
+    if (prefDate) {
+        prefDate.addEventListener('change', (e) => {
+            if (!prefDate.value) return;
+            const selected = new Date(prefDate.value);
+            if (selected.getDay() === 5) {
+                alert(translations[currentLang]['contact.fridayHoliday'] || 'Friday is a holiday. Please choose another day.');
+                const next = nextNonFriday(prefDate.value);
+                prefDate.value = next;
+            }
+        });
+    }
 });
 
 window.addEventListener('scroll', () => {
@@ -324,9 +413,29 @@ AOS.init({ duration: 800, once: true });
     emailjs.init("rQZe9oJ7qsNQWp9WH"); 
 })();
 
-// دالة إرسال الإيميل
-document.getElementById('reservationForm').addEventListener('submit', function(event) {
+    // دالة إرسال الإيميل
+    document.getElementById('reservationForm').addEventListener('submit', function(event) {
     event.preventDefault();
+
+    // validation: service must be selected
+    const serviceSelect = document.getElementById('serviceType');
+    if (serviceSelect && (!serviceSelect.value || serviceSelect.value === '')) {
+        alert(translations[currentLang]['contact.serviceRequired'] || 'Please select a service from the list before submitting.');
+        serviceSelect.focus();
+        return;
+    }
+
+    // validation: date not on Friday
+    const prefDate = document.getElementById('preferredDate');
+    if (prefDate && prefDate.value) {
+        const d = new Date(prefDate.value);
+        if (d.getDay() === 5) {
+            alert(translations[currentLang]['contact.fridayHoliday'] || 'Friday is a holiday. Please choose another day.');
+            prefDate.value = nextNonFriday(prefDate.value);
+            prefDate.focus();
+            return;
+        }
+    }
 
     const btn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
@@ -335,7 +444,7 @@ document.getElementById('reservationForm').addEventListener('submit', function(e
     // تغيير حالة الزر أثناء الإرسال
     btn.disabled = true;
     btn.classList.add('opacity-70', 'cursor-not-allowed');
-    btnText.innerText = "جاري الإرسال...";
+    btnText.innerText = translations[currentLang]['contact.sending'] || 'Sending...';
     btnIcon.className = "fa-solid fa-circle-notch animate-spin";
 
     // إرسال البيانات عبر EmailJS
@@ -349,18 +458,28 @@ document.getElementById('reservationForm').addEventListener('submit', function(e
     })
     .then(function() {
         // في حال النجاح
-        alert("شكراً لك! تم إرسال طلب الحجز لمسؤول العيادة بنجاح. سنتواصل معك قريباً.");
-        document.getElementById('reservationForm').reset();
+        alert(translations[currentLang]['contact.alertMessage'] || 'Your appointment request has been sent successfully!');
+        const form = document.getElementById('reservationForm');
+        form.reset();
+        // restore defaults after reset
+        setPreferredDateToday();
+        setServicePlaceholderSelected();
     }, function(error) {
         // في حال الفشل
         console.error("فشل الإرسال:", error);
-        alert("نعتذر، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.");
+        alert(translations[currentLang]['contact.errorMessage'] || 'An error occurred while sending. Please try again or contact us.');
     })
     .finally(function() {
         // إعادة الزر لحالته الأصلية
         btn.disabled = false;
         btn.classList.remove('opacity-70', 'cursor-not-allowed');
-        btnText.innerText = "تأكيد طلب الحجز";
+        btnText.innerText = translations[currentLang]['contact.form.submitButton'] || 'Submit appointment request';
         btnIcon.className = "fa-solid fa-paper-plane";
     });
+});
+
+// ensure reservation form messages and button reflect current language on load
+document.addEventListener('DOMContentLoaded', () => {
+    const btnText = document.getElementById('btnText');
+    if (btnText) btnText.innerText = translations[currentLang]['contact.form.submitButton'] || btnText.innerText;
 });
