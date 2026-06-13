@@ -51,16 +51,7 @@ const translations = {
 
         'reviews.titleSmall': 'آراء عملائنا',
         'reviews.titleBig': 'ابتسامات تتحدث عن نفسها',
-        'reviews.description': 'نفخر بثقة الآلاف من العملاء الذين اختارونا كوجهة أولى للعناية بأسنانهم.',
-        'reviews.review1.text': '"تجربة رائعة جداً! كنت أعاني من فوبيا أطباء الأسنان، لكن الدكتور كان صبوراً جداً والعيادة مريحة للأعصاب. قمت بعمل زراعة لسن ولم أشعر بأي ألم."',
-        'reviews.review1.name': 'أحمد محمود',
-        'reviews.review1.role': 'زراعة أسنان',
-        'reviews.review2.text': '"أفضل عيادة في المنطقة بلا منازع. النظافة استثنائية والتقنيات حديثة جداً. عملت تبييض ليزر والنتيجة ظهرت فوراً وأبهرت كل من حولي."',
-        'reviews.review2.name': 'سارة عبدالرحمن',
-        'reviews.review2.role': 'تبييض الأسنان',
-        'reviews.review3.text': '"طاقم العمل في قمة الذوق والاحترافية. ابنتي كانت تبكي بمجرد ذكر طبيب الأسنان، لكنهم تعاملوا معها بلطف شديد وأحبت المكان."',
-        'reviews.review3.name': 'منى خليل',
-        'reviews.review3.role': 'طب أسنان الأطفال',
+        'reviews.description': 'نفخر بثقة الكثير من العملاء الذين اختارونا كوجهة أولى للعناية بأسنانهم.',
 
         'contact.heading': 'نحن هنا لخدمتك، <span class="text-primary">تواصل معنا</span>',
         'contact.description': 'لا تتردد في الاتصال بنا لحجز موعد أو لطرح أي استفسار. فريقنا متواجد دائماً للرد على أسئلتك وتقديم المساعدة.',
@@ -148,16 +139,7 @@ const translations = {
 
         'reviews.titleSmall': 'Customer reviews',
         'reviews.titleBig': 'Smiles that speak for themselves',
-        'reviews.description': 'We are proud of the trust placed in us by thousands of patients who chose us as their first dental care destination.',
-        'reviews.review1.text': '"Amazing experience! I had dental anxiety, but the doctor was very patient and the clinic was calming. I got a dental implant without feeling any pain."',
-        'reviews.review1.name': 'Ahmed Mahmoud',
-        'reviews.review1.role': 'Dental Implant',
-        'reviews.review2.text': '"The best clinic in the area by far. The hygiene is exceptional and the technology is very modern. I had laser whitening and the result was instantly impressive."',
-        'reviews.review2.name': 'Sara Abdulrahman',
-        'reviews.review2.role': 'Teeth Whitening',
-        'reviews.review3.text': '"The staff are extremely polite and professional. My daughter used to cry at the thought of the dentist, but they treated her gently and she loved the place."',
-        'reviews.review3.name': 'Mona Khalil',
-        'reviews.review3.role': 'Pediatric Dentistry',
+        'reviews.description': 'We are proud of the trust placed in us by several patients who chose us as their first dental care destination.',
 
         'contact.heading': 'We are here to serve you, <span class="text-primary">get in touch</span>',
         'contact.description': 'Feel free to contact us to book an appointment or ask any question. Our team is always ready to assist you and offer support.',
@@ -196,11 +178,136 @@ const translations = {
 };
 
 let currentLang = 'ar';
+let reviewsSwiper; // Hold the Swiper instance for re-initialization
+
+const reviewsData = [
+    {
+        name: 'Mina Esmat',
+        text: 'بجد احسن عيادة اسنان ممكن تشوفها من ناحيه النضافة و النظام وبيستخدموا احسن الادوات و انضفها مع التأكيد الاهتمام في تعقيم الادوات ... و انا لما روحت الدكتور يوسف عصمت هو دكتور محترم ولطيف و هساعدك في علاجك و هترتاح معاه',
+        stars: 5
+    },
+    {
+        name: 'Nardin Saeed',
+        text: 'العياده حلوة جدا ونظيفه ودكتور بيتر ودكتور يوسف ممتازين وعاملين عروض حلوة جدا',
+        stars: 5
+    },
+    {
+        name: 'Tena Hima',
+        text: 'شكرا جدا أن يكون فيه عيادة اسنان فيها دقة فى المواعيد دكتور مرتين فى التعامل ماتريل ممتازة والأهم النظافة والتعقيم وstaff',
+        stars: 5
+    },
+    {
+        name: 'محسن ا...',
+        text: 'العياده ممتازه و نظيفه اوي اجهزه حديثه جدا والتكلفه والاسعار مناسبه اوي والخامات عاليه جدا وبيتأكدوا من التعقيم كويس اوي كمان دكتور بيتر و كل الاستاف قمه في الذوق و الادب و الاخلاق و كمان دكتور يوسف مستوى فوق الممتاز من العلم و الادب وهايفهمك كل حاجه بكل التفاصيل قبل الشغل',
+        stars: 5
+    },
+    {
+        name: 'Esmat Haleem',
+        text: 'استقبال جميل وخدمة محترمة وأسعار معقولة',
+        stars: 5
+    },
+    {
+        name: 'Ali Aiad',
+        text: 'دكتور ممتاز واستقبال طيب وأسعار مناسبة وعمله في الاسنان ممتاز',
+        stars: 5
+    },
+    {
+        name: 'عبده ع...',
+        text: 'دكتور لطيف جدا ويقوم بعمله على أجمل وجه',
+        stars: 5
+    },
+    {
+        name: 'Maria Zakaria',
+        text: 'Very helpful and skillful doctors Thanks to Dr Peter and Dr youssef',
+        stars: 5
+    },
+    {
+        name: 'ماريهان م...',
+        text: 'بصراحة العيادة نظيفة جدا و دكتور بيتر بروفيشنال جدا والاسعار كمان حلوة جدا',
+        stars: 5
+    },
+    {
+        name: 'موسي إ...',
+        text: 'دكتور كويس جدا ممتاز جدا تسلموا',
+        stars: 5
+    },
+    {
+        name: 'عائشة ...',
+        text: 'مستوي ممتاز الدكتور والعياده والاسستنس حقيقي راضيه جدا بالنتيجه تعقيم وماتريال ونضافه فوق الممتاز',
+        stars: 5
+    },
+    {
+        name: 'youssef ...',
+        text: 'فرق عمل رائع و العياده نظيفه جدا و دا شي مريح و الدكتور بيتر شاطر جدا',
+        stars: 5
+    },
+    {
+        name: 'Phoenix Róma',
+        text: 'دكاترة ممتازين ومعاملتهم لطيفه جدا وشغل ايديهم بأجهزه حديثه ودقيقين جدا في الكشف بيقولوا كل حاجه حرفيا موجوده في الاسنان وبيخيروك تحب تبداء ب ايه بجد احسن دكاتره',
+        stars: 5
+    },
+    {
+        name: 'Yousteena Ibrahim',
+        text: 'عيادة opal بجد تجربة مختلفة معاملة حلوة جدا دكتور فاهم بيعمل ايه وبيوضحلك خطة العلاج قبل ما يبدأ فمش بتتفاجئ باى حاجة شكرا لنظافة المكان ودقة المواعيد',
+        stars: 5
+    },
+    {
+        name: 'منه م ...',
+        text: 'دكتور بارك الله فيها وجزاها خير الجزاء ونعم الاخلاق والانسانيه والطب',
+        stars: 5
+    }
+];
 
 const langToggleBtn = document.getElementById('lang-toggle');
 const mobileLangToggleBtn = document.getElementById('mobile-lang-toggle');
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const menu = document.getElementById('mobile-menu');
+
+function renderReviews() {
+    const container = document.getElementById('reviews-container');
+    if (!container) return;
+
+    container.innerHTML = reviewsData.map(review => `
+        <div class="swiper-slide bg-slate-50 p-8 rounded-3xl flex flex-col">
+            <div class="mb-4">
+                <h4 class="font-bold text-darkText text-lg mb-1">${review.name}</h4>
+                <div class="flex text-yellow-400 text-sm">
+                    ${'<i class="fa-solid fa-star"></i>'.repeat(review.stars)}
+                </div>
+            </div>
+            <p class="text-slate-700 mb-4 leading-relaxed flex-grow">${review.text}</p>
+            <div class="text-right">
+                <i class="fa-solid fa-quote-right text-3xl text-primary/30"></i>
+            </div>
+        </div>
+    `).join('');
+}
+
+function initReviewsSwiper() {
+    if (typeof Swiper !== 'undefined') {
+        reviewsSwiper = new Swiper('.reviews-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    }
+}
 
 function setLanguage(lang) {
     if (!translations[lang]) lang = 'ar';
@@ -274,6 +381,12 @@ function setLanguage(lang) {
         const today = new Date().toISOString().split('T')[0];
         if (!prefDate.value) prefDate.value = today;
     }
+
+    // Destroy and re-initialize Swiper to handle direction change
+    if (reviewsSwiper) {
+        reviewsSwiper.destroy(true, true);
+    }
+    initReviewsSwiper();
 
     localStorage.setItem('opal-lang', lang);
 }
@@ -349,6 +462,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initLanguage();
     setPreferredDateToday();
     setServicePlaceholderSelected();
+    renderReviews(); // Render reviews before initializing Swiper
 
     if (typeof AOS !== 'undefined') {
         AOS.init({
@@ -358,6 +472,9 @@ window.addEventListener('DOMContentLoaded', () => {
             easing: 'ease-in-out',
         });
     }
+
+    // Initialize Swiper for reviews
+    initReviewsSwiper();
 
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', animateMobileMenu);

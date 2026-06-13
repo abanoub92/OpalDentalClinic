@@ -15,6 +15,8 @@
 
     <!-- مكتبة AOS للحركات عند الـ Scroll (CSS) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,6 +43,8 @@
     </script>
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="styles/javascript.js" defer></script>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
@@ -274,60 +278,16 @@
                 <p class="text-slate-600" data-i18n="reviews.description">نفخر بثقة الآلاف من العملاء الذين اختارونا كوجهة أولى للعناية بأسنانهم.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- ريفيو 1 -->
-                <div class="bg-slate-50 p-8 rounded-3xl relative">
-                    <i class="fa-solid fa-quote-right text-4xl text-primary/20 absolute top-6 right-6"></i>
-                    <div class="flex text-yellow-400 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-700 mb-6 leading-relaxed" data-i18n="reviews.review1.text">"تجربة رائعة جداً! كنت أعاني من فوبيا أطباء الأسنان، لكن الدكتور كان صبوراً جداً والعيادة مريحة للأعصاب. قمت بعمل زراعة لسن ولم أشعر بأي ألم."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-slate-300 rounded-full overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-darkText" data-i18n="reviews.review1.name">أحمد محمود</h4>
-                            <p class="text-xs text-slate-500" data-i18n="reviews.review1.role">زراعة أسنان</p>
-                        </div>
-                    </div>
+            <div class="swiper reviews-swiper px-4">
+                <div class="swiper-wrapper" id="reviews-container">
+                    <!-- Reviews will be injected here by JavaScript -->
                 </div>
+                <div class="swiper-pagination !-bottom-10"></div>
+            </div>
 
-                <!-- ريفيو 2 -->
-                <div class="bg-primary text-white p-8 rounded-3xl relative transform md:-translate-y-4 shadow-xl shadow-primary/20">
-                    <i class="fa-solid fa-quote-right text-4xl text-white/20 absolute top-6 right-6"></i>
-                    <div class="flex text-yellow-300 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="mb-6 leading-relaxed" data-i18n="reviews.review2.text">"أفضل عيادة في المنطقة بلا منازع. النظافة استثنائية والتقنيات حديثة جداً. عملت تبييض ليزر والنتيجة ظهرت فوراً وأبهرت كل من حولي."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-slate-300 rounded-full overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold" data-i18n="reviews.review2.name">سارة عبدالرحمن</h4>
-                            <p class="text-xs text-orange-100" data-i18n="reviews.review2.role">تبييض الأسنان</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- ريفيو 3 -->
-                <div class="bg-slate-50 p-8 rounded-3xl relative">
-                    <i class="fa-solid fa-quote-right text-4xl text-primary/20 absolute top-6 right-6"></i>
-                    <div class="flex text-yellow-400 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-700 mb-6 leading-relaxed" data-i18n="reviews.review3.text">"طاقم العمل في قمة الذوق والاحترافية. ابنتي كانت تبكي بمجرد ذكر طبيب الأسنان، لكنهم تعاملوا معها بلطف شديد وأحبت المكان."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-slate-300 rounded-full overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-darkText" data-i18n="reviews.review3.name">منى خليل</h4>
-                            <p class="text-xs text-slate-500" data-i18n="reviews.review3.role">طب أسنان الأطفال</p>
-                        </div>
-                    </div>
                 </div>
+                <div class="swiper-pagination !-bottom-10"></div>
             </div>
         </div>
     </section>
@@ -382,10 +342,10 @@
 
                     <!-- أيقونات السوشيال ميديا -->
                     <div class="flex gap-4 mt-10">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                        <a href="https://www.facebook.com/share/1BCePuUYs1/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/opa_ldentalclinic?igsh=MWVnaWR0NzdlZjkycQ==" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@opal.dental.clinic?_r=1&_t=ZS-979qoIGzZLR" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://wa.me/+249961717973?source=exsh" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
                     </div>
                 </div>
 
