@@ -68,13 +68,16 @@ const translations = {
         'contact.form.nameLabel': 'الاسم بالكامل',
         'contact.form.namePlaceholder': 'أدخل اسمك الكريم',
         'contact.form.phoneLabel': 'رقم الهاتف',
-        'contact.form.phonePlaceholder': '05x xxx xxxx',
+        'contact.form.phonePlaceholder': 'xxxx xxx xxxx',
         'contact.form.serviceLabel': 'الخدمة المطلوبة',
-        'contact.form.option1': 'استشارة عامة',
-        'contact.form.option2': 'تبييض الأسنان',
-        'contact.form.option3': 'تقويم الأسنان',
-        'contact.form.option4': 'زراعة الأسنان',
-        'contact.form.option5': 'أخرى',
+        'contact.form.option1': 'تنظيف جير و تلميع الأسنان',
+        'contact.form.option2': 'حشو',
+        'contact.form.option3': 'حشو عصب',
+        'contact.form.option4': 'أطفال',
+        'contact.form.option5': 'زراعة أسنان',
+        'contact.form.option6': 'تقويم معدني و تقويم شفاف',
+        'contact.form.option7': 'تركيبات ثابتة و متحركة',
+        'contact.form.option8': 'تبييض الاسنان',
         'contact.form.dateLabel': 'تاريخ الموعد المفضل',
         'contact.form.submitButton': 'تأكيد طلب الحجز',
         'contact.sending': 'جاري الإرسال...',
@@ -161,11 +164,14 @@ const translations = {
         'contact.form.phoneLabel': 'Phone number',
         'contact.form.phonePlaceholder': '+966 5x xxx xxxx',
         'contact.form.serviceLabel': 'Service required',
-        'contact.form.option1': 'General consultation',
-        'contact.form.option2': 'Teeth whitening',
-        'contact.form.option3': 'Orthodontics',
-        'contact.form.option4': 'Dental implants',
-        'contact.form.option5': 'Other',
+        'contact.form.option1': 'Scaling & polishing',
+        'contact.form.option2': 'Fillings',
+        'contact.form.option3': 'Endo treatment',
+        'contact.form.option4': 'Pedo treatment',
+        'contact.form.option5': 'Implant',
+        'contact.form.option6': 'Ortho (braces & invesalign)',
+        'contact.form.option7': 'Fixed & Removable prothodontics',
+        'contact.form.option8': 'Bleaching',
         'contact.form.dateLabel': 'Preferred appointment date',
         'contact.form.submitButton': 'Submit appointment request',
         'contact.sending': 'Sending...',
@@ -185,6 +191,38 @@ const translations = {
 
 let currentLang = 'ar';
 let reviewsSwiper; // Hold the Swiper instance for re-initialization
+
+const serviceOptions = [
+    { value: 'general-consultation', labelKey: 'contact.form.option1' },
+    { value: 'cleaning-polishing', labelKey: 'contact.form.option2' },
+    { value: 'filling', labelKey: 'contact.form.option3' },
+    { value: 'root-canal', labelKey: 'contact.form.option4' },
+    { value: 'pediatric', labelKey: 'contact.form.option5' },
+    { value: 'dental-implants', labelKey: 'contact.form.option6' },
+    { value: 'orthodontics', labelKey: 'contact.form.option7' },
+    { value: 'prosthesis', labelKey: 'contact.form.option8' },
+];
+
+function populateServiceOptions(locale) {
+    const serviceSelect = document.getElementById('serviceType');
+    if (!serviceSelect) return;
+
+    serviceSelect.innerHTML = '';
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = locale['contact.form.servicePlaceholder'] || '';
+    serviceSelect.appendChild(placeholder);
+
+    serviceOptions.forEach(({ value, labelKey }) => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = locale[labelKey] || labelKey;
+        serviceSelect.appendChild(option);
+    });
+}
 
 const reviewsData = [
     {
@@ -362,24 +400,8 @@ function setLanguage(lang) {
         if (key && locale[key]) el.value = locale[key];
     });
 
-    // ensure the service select (`serviceType`) has a placeholder as the first, non-value option
-    const serviceSelect = document.getElementById('serviceType');
-    if (serviceSelect) {
-        const existingPlaceholder = serviceSelect.querySelector('option[value=""]');
-        const placeholderText = locale['contact.form.servicePlaceholder'] || locale['contact.form.serviceLabel'] || '';
-        if (existingPlaceholder) {
-            existingPlaceholder.textContent = placeholderText;
-            existingPlaceholder.disabled = true;
-            existingPlaceholder.selected = true;
-        } else {
-            const ph = document.createElement('option');
-            ph.value = '';
-            ph.textContent = placeholderText;
-            ph.disabled = true;
-            ph.selected = true;
-            serviceSelect.insertBefore(ph, serviceSelect.firstChild);
-        }
-    }
+    // ensure the service select (`serviceType`) has a placeholder and localized options
+    populateServiceOptions(locale);
 
     // set preferred date default to today (for <input type="date" id="preferredDate">)
     const prefDate = document.getElementById('preferredDate');
