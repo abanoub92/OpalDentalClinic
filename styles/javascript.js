@@ -22,7 +22,7 @@ const translations = {
         'hero.card.description': 'أحدث أجهزة التخدير',
 
         'stats.clients': 'عميل سعيد',
-        'stats.years': 'سنة خبرة',
+        'stats.years': 'سنة خبرة فريق العمل',
         'stats.rating': 'تقييم ممتاز',
 
         'services.titleSmall': 'ماذا نقدم؟',
@@ -42,6 +42,9 @@ const translations = {
         'gallery.titleBig': 'بيئة مصممة لراحتك',
         'gallery.description': 'نحرص على توفير بيئة معقمة، هادئة، ومجهزة بأحدث التقنيات العالمية لتشعر بالاسترخاء التام.',
         'gallery.button': 'شاهد المزيد على انستجرام',
+        'gallery.soundToggle': 'تشغيل الصوت',
+        'gallery.soundOn': 'كتم الصوت',
+        'gallery.soundOff': 'تشغيل الصوت',
         'gallery.img1.alt': 'غرفة العلاج',
         'gallery.img1.title': 'غرفة العلاج المجهزة',
         'gallery.img2.alt': 'منطقة الاستقبال',
@@ -110,7 +113,7 @@ const translations = {
         'hero.card.description': 'Advanced anesthesia systems',
 
         'stats.clients': 'Happy clients',
-        'stats.years': 'Years of experience',
+        'stats.years': 'Years of team experience',
         'stats.rating': 'Excellent rating',
 
         'services.titleSmall': 'What we offer',
@@ -130,6 +133,9 @@ const translations = {
         'gallery.titleBig': 'A space designed for your comfort',
         'gallery.description': 'We maintain a sterile, calm environment equipped with the latest global technologies so you can relax completely.',
         'gallery.button': 'See more on Instagram',
+        'gallery.soundToggle': 'Enable sound',
+        'gallery.soundOn': 'Mute sound',
+        'gallery.soundOff': 'Enable sound',
         'gallery.img1.alt': 'Treatment room',
         'gallery.img1.title': 'Equipped treatment room',
         'gallery.img2.alt': 'Reception area',
@@ -388,6 +394,9 @@ function setLanguage(lang) {
     }
     initReviewsSwiper();
 
+    const gallerySoundToggle = document.getElementById('gallerySoundToggle');
+    if (gallerySoundToggle) updateGallerySoundButton(gallerySoundToggle);
+
     localStorage.setItem('opal-lang', lang);
 }
 
@@ -458,6 +467,100 @@ function closeMobileMenu() {
     }, 300);
 }
 
+let galleryVideos = [];
+let galleryCurrentVideoIndex = 0;
+let galleryIsSoundOn = false;
+
+function updateGallerySoundButton(button) {
+    if (!button) return;
+    const icon = button.querySelector('i');
+    const label = button.querySelector('span');
+    if (icon) icon.className = galleryIsSoundOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+    if (label) {
+        label.textContent = translations[currentLang][galleryIsSoundOn ? 'gallery.soundOn' : 'gallery.soundOff'] || (galleryIsSoundOn ? 'Mute sound' : 'Enable sound');
+    }
+}
+
+function playGalleryVideo(index) {
+    if (!galleryVideos.length) return;
+    galleryCurrentVideoIndex = index % galleryVideos.length;
+    galleryVideos.forEach((video, i) => {
+        if (i === galleryCurrentVideoIndex) {
+            video.muted = !galleryIsSoundOn;
+            video.play().catch(() => {});
+        } else {
+            video.pause();
+            video.currentTime = 0;
+        }
+    });
+}
+
+function initGalleryVideoPlaylist() {
+    galleryVideos = Array.from(document.querySelectorAll('#galleryVideo1, #galleryVideo2, #galleryVideo3'));
+    const toggleButton = document.getElementById('gallerySoundToggle');
+    if (!galleryVideos.length) return;
+
+    galleryVideos.forEach((video, index) => {
+        video.muted = true;
+        video.setAttribute('playsinline', '');
+        video.addEventListener('ended', () => {
+            playGalleryVideo((index + 1) % galleryVideos.length);
+        });
+    });
+
+    if (toggleButton) {
+        updateGallerySoundButton(toggleButton);
+        toggleButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            galleryIsSoundOn = !galleryIsSoundOn;
+            galleryVideos.forEach(video => {
+                video.muted = !galleryIsSoundOn;
+            });
+            updateGallerySoundButton(toggleButton);
+            const currentVideo = galleryVideos[galleryCurrentVideoIndex];
+            if (currentVideo) {
+                currentVideo.play().catch(() => {});
+            }
+        });
+    }
+
+    playGalleryVideo(0);
+}
+
+function initHeroVideoToggle() {
+    const video = document.getElementById('heroVideo');
+    const playButton = document.getElementById('playButton');
+    
+    if (!video || !playButton) return;
+    
+    let isSoundOn = false;
+    
+    // Auto-start muted
+    video.play().catch(() => {
+        // Handle autoplay error
+    });
+    
+    // Click to toggle sound
+    playButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        isSoundOn = !isSoundOn;
+        video.muted = !isSoundOn;
+        video.play();
+        
+        // Update button icon
+        const icon = playButton.querySelector('i');
+        if (icon) {
+            if (isSoundOn) {
+                icon.className = 'fa-solid fa-volume-mute text-white text-lg';
+                playButton.title = 'Mute sound';
+            } else {
+                icon.className = 'fa-solid fa-volume-high text-white text-lg';
+                playButton.title = 'Unmute sound';
+            }
+        }
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     initLanguage();
     setPreferredDateToday();
@@ -475,6 +578,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Swiper for reviews
     initReviewsSwiper();
+    
+    // Initialize hero video sound toggle
+    initHeroVideoToggle();
+
+    // Initialize gallery video playlist and sound toggle
+    initGalleryVideoPlaylist();
 
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', animateMobileMenu);

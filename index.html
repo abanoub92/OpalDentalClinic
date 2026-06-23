@@ -155,10 +155,17 @@
                 <!-- الصورة -->
                 <div class="relative lg:h-[600px] flex items-center justify-center">
                     <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
-                    <video aria-label="طبيب أسنان يعالج مريض" data-i18n-alt="hero.image.alt" class="rounded-[3rem] shadow-2xl object-cover h-full w-full border-8 border-white" autoplay muted loop playsinline>
-                        <source src="assets/video_1.webm" type="video/webm">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="relative w-full h-full rounded-[3rem] overflow-hidden">
+                        <video id="heroVideo" aria-label="طبيب أسنان يعالج مريض" data-i18n-alt="hero.image.alt" class="rounded-[3rem] shadow-2xl object-cover h-full w-full border-8 border-white" loop playsinline muted>
+                            <source src="assets/intro.webm" type="video/webm">
+                            Your browser does not support the video tag.
+                        </video>
+                        
+                        <!-- Sound Toggle Button -->
+                        <button id="playButton" class="absolute top-4 right-4 z-20 w-10 h-10 bg-primary hover:bg-primaryDark rounded-full flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl" title="Toggle sound">
+                            <i class="fa-solid fa-volume-high text-white text-lg"></i>
+                        </button>
+                    </div>
                     
                     <!-- بطاقة عائمة -->
                     <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
@@ -238,32 +245,42 @@
                     <h3 class="text-3xl md:text-4xl font-black text-darkText mb-4" data-i18n="gallery.titleBig">بيئة مصممة لراحتك</h3>
                     <p class="text-slate-600" data-i18n="gallery.description">نحرص على توفير بيئة معقمة، هادئة، ومجهزة بأحدث التقنيات العالمية لتشعر بالاسترخاء التام.</p>
                 </div>
-                <div class="mt-6 md:mt-0">
+                <div class="mt-6 md:mt-0 flex flex-wrap items-center gap-3 justify-end">
+                    <button id="gallerySoundToggle" class="bg-white border border-slate-200 text-slate-700 px-6 py-2 rounded-full hover:bg-slate-100 transition-colors shadow-sm font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                        <span data-i18n="gallery.soundToggle">تشغيل الصوت</span>
+                    </button>
                     <button class="bg-white border border-slate-200 text-slate-700 px-6 py-2 rounded-full hover:bg-slate-100 transition-colors shadow-sm font-medium" data-i18n="gallery.button">
                         شاهد المزيد على انستجرام <i class="fa-brands fa-instagram text-pink-500 mr-1"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- شبكة الصور -->
+            <!-- شبكة الفيديو -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- صورة 1 -->
-                <div class="img-hover-zoom rounded-2xl relative group h-64 lg:h-80">
-                    <img src="assets/img_gallery_1.avif" alt="غرفة العلاج" data-i18n-alt="gallery.img1.alt" class="w-full h-full object-cover">
+                <div class="img-hover-zoom rounded-2xl relative group h-80 lg:h-[420px] overflow-hidden">
+                    <video id="galleryVideo1" class="w-full h-full object-cover" playsinline muted preload="metadata">
+                        <source src="assets/video_1.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <h4 class="text-white font-bold text-lg" data-i18n="gallery.img1.title">غرفة العلاج المجهزة</h4>
                     </div>
                 </div>
-                <!-- صورة 2 -->
-                <div class="img-hover-zoom rounded-2xl relative group h-64 lg:h-80">
-                    <img src="assets/img_gallery_4.avif" alt="منطقة الاستقبال" data-i18n-alt="gallery.img2.alt" class="w-full h-full object-cover">
+                <div class="img-hover-zoom rounded-2xl relative group h-80 lg:h-[420px] overflow-hidden">
+                    <video id="galleryVideo2" class="w-full h-full object-cover" playsinline muted preload="metadata">
+                        <source src="assets/video_2.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <h4 class="text-white font-bold text-lg" data-i18n="gallery.img2.title">منطقة الاستقبال المريحة</h4>
                     </div>
                 </div>
-                <!-- صورة 3 -->
-                <div class="img-hover-zoom rounded-2xl relative group h-64 lg:h-80">
-                    <img src="assets/img_gallery_2.avif" alt="أحدث الأجهزة" data-i18n-alt="gallery.img3.alt" class="w-full h-full object-cover">
+                <div class="img-hover-zoom rounded-2xl relative group h-80 lg:h-[420px] overflow-hidden">
+                    <video id="galleryVideo3" class="w-full h-full object-cover" playsinline muted preload="metadata">
+                        <source src="assets/video_3.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <h4 class="text-white font-bold text-lg" data-i18n="gallery.img3.title">أجهزة أشعة حديثة (3D)</h4>
                     </div>
