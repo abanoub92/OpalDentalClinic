@@ -19,7 +19,7 @@ const translations = {
         'hero.bookConsultation': 'احجز استشارتك اونلاين',
         'hero.browseServices': 'تصفح خدماتنا',
         'hero.card.title': 'علاج بدون ألم',
-        'hero.card.description': 'أحدث أجهزة التخدير',
+        'hero.card.description': 'أحدث أجهزة الكشف',
 
         'stats.clients': 'عميل سعيد',
         'stats.years': 'سنوات خبرة فريق العمل',
@@ -121,7 +121,7 @@ const translations = {
         'hero.bookConsultation': 'Book your consultation online',
         'hero.browseServices': 'Explore our services',
         'hero.card.title': 'Painless treatment',
-        'hero.card.description': 'Advanced anesthesia systems',
+        'hero.card.description': 'Advanced diagnosis systems',
 
         'stats.clients': 'Happy clients',
         'stats.years': 'Years of team experience',
@@ -169,7 +169,7 @@ const translations = {
         'contact.heading': 'We are here to serve you, <span class="text-primary">get in touch</span>',
         'contact.description': 'Feel free to contact us to book an appointment or ask any question. Our team is always ready to assist you and offer support.',
         'contact.addressTitle': 'Clinic Address',
-        'contact.addressText': '321 King Faisal Main Street - Above Oriental Weavers - Third Floor - Apartment 36',
+        'contact.addressText': '321 King Faisal Main Street - Above Alnasajun Alsharqiuwn - Third Floor - Apartment 36',
         'contact.phoneTitle': 'Contact Numbers',
         'contact.phoneText': '+2001557150123',
         'contact.hoursTitle': 'Working Hours',
