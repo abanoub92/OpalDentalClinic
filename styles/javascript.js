@@ -3,7 +3,7 @@ const translations = {
         'document.title': 'عيادة أوبال | لطب وتجميل الأسنان',
         'nav.home': 'الرئيسية',
         'nav.services': 'خدماتنا',
-        'nav.gallery': 'معرض الصور',
+        'nav.gallery': 'ميديا العيادة',
         'nav.reviews': 'آراء العملاء',
         'nav.contact': 'تواصل معنا',
         'nav.bookAppointment': 'احجز موعدك',
@@ -12,7 +12,7 @@ const translations = {
         'logo.alt': 'لوجو عيادة أوبال',
         'logo.name': 'عيادة <span class="text-primary">أوبال</span>',
 
-        'hero.promo': 'العيادة الأفضل تقييماً في المدينة',
+        'hero.promo': 'العيادة الأفضل تقييماً في الجيزة',
         'hero.title': 'ابتسامتك المشرقة <br/><span class="text-transparent bg-clip-text bg-gradient-to-l from-primary to-orange-300">تبدأ من هنا</span>',
         'hero.image.alt': 'طبيب أسنان يعالج مريض',
         'hero.description': 'نقدم لك أحدث تقنيات طب وتجميل الأسنان على يد نخبة من الخبراء، لضمان تجربة علاجية مريحة، آمنة، وبدون ألم. استعد ثقتك بابتسامتك.',
@@ -28,14 +28,22 @@ const translations = {
         'services.titleSmall': 'ماذا نقدم؟',
         'services.titleBig': 'خدمات طبية متكاملة بلمسة فنية',
         'services.description': 'نوفر لك ولعائلتك رعاية شاملة للأسنان باستخدام أحدث ما توصل إليه العلم في مجال طب وتجميل الأسنان.',
-        'services.service1.title': 'تبييض الأسنان بالليزر',
-        'services.service1.description': 'احصل على ابتسامة ناصعة البياض في جلسة واحدة فقط باستخدام تقنية الزووم الآمنة والفعالة.',
-        'services.service2.title': 'زراعة الأسنان',
-        'services.service2.description': 'استعد وظيفة وشكل أسنانك المفقودة بزراعات سويسرية عالية الجودة تدوم مدى الحياة.',
-        'services.service3.title': 'تقويم الأسنان',
-        'services.service3.description': 'خيارات متعددة تشمل التقويم المعدني، الشفاف (الإنفزلاين)، وتقويم الأطفال لتصحيح الإبتسامة.',
+        'services.service1.title': 'تنظيف جير وتلميع الأسنان',
+        'services.service1.description': 'نظافة دقيقة وإزالة الرواسب لمنح أسنانك صحة ولمعان دائم.',
+        'services.service2.title': 'حشو الأسنان',
+        'services.service2.description': 'علاج سريع وآمن للتسوس مع تركيبات تتحمل الاستخدام اليومي.',
+        'services.service3.title': 'حشو عصب',
+        'services.service3.description': 'علاج جذور مريح ودقيق يخلصك من الألم ويستعيد صحة الضرس.',
         'services.service4.title': 'طب أسنان الأطفال',
         'services.service4.description': 'بيئة صديقة ومرحة لضمان تجربة إيجابية لطفلك بدون خوف، مع أطباء متخصصين في التعامل مع الأطفال.',
+        'services.service5.title': 'زراعة الأسنان',
+        'services.service5.description': 'استعد وظيفة وشكل أسنانك المفقودة بزراعات سويسرية عالية الجودة تدوم مدى الحياة.',
+        'services.service6.title': 'تقويم الأسنان',
+        'services.service6.description': 'خيارات متعددة تشمل التقويم المعدني والشفاف لتصحيح ابتسامتك بثقة.',
+        'services.service7.title': 'تركيبات ثابتة ومتحركة',
+        'services.service7.description': 'حلول تناسب أسنانك وتستعيد شكل الفم ووظيفة المضغ بطريقة طبيعية.',
+        'services.service8.title': 'تبييض الأسنان',
+        'services.service8.description': 'احصل على ابتسامة أكثر بياضًا بأمان وفعالية مع أحدث تقنيات التبييض.',
         'services.bookNow': 'احجز الآن',
 
         'gallery.titleSmall': 'جولة في العيادة',
@@ -59,11 +67,11 @@ const translations = {
         'contact.heading': 'نحن هنا لخدمتك، <span class="text-primary">تواصل معنا</span>',
         'contact.description': 'لا تتردد في الاتصال بنا لحجز موعد أو لطرح أي استفسار. فريقنا متواجد دائماً للرد على أسئلتك وتقديم المساعدة.',
         'contact.addressTitle': 'عنوان العيادة',
-        'contact.addressText': 'شارع الملك فهد، تقاطع شارع العروبة، مبنى الإطلالة، الدور الثالث، مدينة الرياض.',
+        'contact.addressText': '321 شارع الملك فيصل الرئيسى - أعلى النساجون الشرقيون - الدور الثالث - شقة 36',
         'contact.phoneTitle': 'أرقام التواصل',
-        'contact.phoneText': '+966 50 123 4567 | +966 11 987 6543',
+        'contact.phoneText': '+2001557150123',
         'contact.hoursTitle': 'ساعات العمل',
-        'contact.hoursText': 'السبت - الخميس: 9:00 صباحاً - 10:00 مساءً | الجمعة: مغلق',
+        'contact.hoursText': 'السبت - الخميس: 10:00 صباحاً - 10:00 مساءً | الجمعة: 02:00 مساءً - 09:00 مساءً',
         'contact.formTitle': 'احجز موعدك أونلاين',
         'contact.form.nameLabel': 'الاسم بالكامل',
         'contact.form.namePlaceholder': 'أدخل اسمك الكريم',
@@ -97,7 +105,7 @@ const translations = {
         'document.title': 'Opal Dental Clinic | Cosmetic & Dental Care',
         'nav.home': 'Home',
         'nav.services': 'Services',
-        'nav.gallery': 'Gallery',
+        'nav.gallery': 'Clinic Media',
         'nav.reviews': 'Reviews',
         'nav.contact': 'Contact',
         'nav.bookAppointment': 'Book Appointment',
@@ -106,7 +114,7 @@ const translations = {
         'logo.alt': 'Opal Dental Clinic logo',
         'logo.name': 'Opal <span class="text-primary">Clinic</span>',
 
-        'hero.promo': 'The city’s most trusted dental clinic',
+        'hero.promo': 'The most trusted dental clinic in Giza',
         'hero.title': 'Your bright smile <br/><span class="text-transparent bg-clip-text bg-gradient-to-l from-primary to-orange-300">starts here</span>',
         'hero.image.alt': 'Dentist treating a patient',
         'hero.description': 'We bring you the latest dental and cosmetic treatments performed by a team of expert doctors, ensuring a comfortable, safe, and painless experience. Rediscover your smile with confidence.',
@@ -122,14 +130,22 @@ const translations = {
         'services.titleSmall': 'What we offer',
         'services.titleBig': 'Complete dental care with an artistic touch',
         'services.description': 'We provide comprehensive dental care for you and your family using the latest global dental and aesthetic technologies.',
-        'services.service1.title': 'Laser Teeth Whitening',
-        'services.service1.description': 'Get a brilliantly white smile in just one session with safe and effective Zoom whitening technology.',
-        'services.service2.title': 'Dental Implants',
-        'services.service2.description': 'Restore missing teeth with premium Swiss implants designed to last a lifetime.',
-        'services.service3.title': 'Orthodontics',
-        'services.service3.description': 'Multiple options including metal braces, Invisalign, and pediatric orthodontics to perfect your smile.',
+        'services.service1.title': 'Scaling & Polishing',
+        'services.service1.description': 'Deep cleaning to remove tartar and polish teeth for lasting health and shine.',
+        'services.service2.title': 'Fillings',
+        'services.service2.description': 'Fast and safe cavity treatment using durable filling materials.',
+        'services.service3.title': 'Endo Treatment',
+        'services.service3.description': 'Precise root canal care to save your tooth and relieve pain.',
         'services.service4.title': 'Pediatric Dentistry',
         'services.service4.description': 'A friendly, fun environment to ensure your child’s visit is positive and stress-free.',
+        'services.service5.title': 'Dental Implants',
+        'services.service5.description': 'Restore missing teeth with premium implants designed to last and feel natural.',
+        'services.service6.title': 'Orthodontics',
+        'services.service6.description': 'Braces and clear aligners to align your teeth and create a confident smile.',
+        'services.service7.title': 'Fixed & Removable Prosthodontics',
+        'services.service7.description': 'Custom prosthetic solutions for natural appearance and comfortable chewing.',
+        'services.service8.title': 'Bleaching',
+        'services.service8.description': 'Safe whitening treatments that brighten your smile with proven results.',
         'services.bookNow': 'Book now',
 
         'gallery.titleSmall': 'Clinic tour',
@@ -153,11 +169,11 @@ const translations = {
         'contact.heading': 'We are here to serve you, <span class="text-primary">get in touch</span>',
         'contact.description': 'Feel free to contact us to book an appointment or ask any question. Our team is always ready to assist you and offer support.',
         'contact.addressTitle': 'Clinic Address',
-        'contact.addressText': 'King Fahd Street, Orouba Intersection, Al-Itlala Building, 3rd Floor, Riyadh.',
+        'contact.addressText': '321 King Faisal Main Street - Above Oriental Weavers - Third Floor - Apartment 36',
         'contact.phoneTitle': 'Contact Numbers',
-        'contact.phoneText': '+966 50 123 4567 | +966 11 987 6543',
+        'contact.phoneText': '+2001557150123',
         'contact.hoursTitle': 'Working Hours',
-        'contact.hoursText': 'Sat - Thu: 9:00 AM - 10:00 PM | Fri: Closed',
+        'contact.hoursText': 'Sat - Thu: 10:00 AM - 10:00 PM | Fri: 02:00 PM - 09:00 PM',
         'contact.formTitle': 'Book your appointment online',
         'contact.form.nameLabel': 'Full name',
         'contact.form.namePlaceholder': 'Enter your full name',
@@ -191,16 +207,17 @@ const translations = {
 
 let currentLang = 'ar';
 let reviewsSwiper; // Hold the Swiper instance for re-initialization
+let servicesSwiper;
 
 const serviceOptions = [
-    { value: 'general-consultation', labelKey: 'contact.form.option1' },
-    { value: 'cleaning-polishing', labelKey: 'contact.form.option2' },
-    { value: 'filling', labelKey: 'contact.form.option3' },
-    { value: 'root-canal', labelKey: 'contact.form.option4' },
-    { value: 'pediatric', labelKey: 'contact.form.option5' },
-    { value: 'dental-implants', labelKey: 'contact.form.option6' },
-    { value: 'orthodontics', labelKey: 'contact.form.option7' },
-    { value: 'prosthesis', labelKey: 'contact.form.option8' },
+    { value: 'scaling-polishing', labelKey: 'contact.form.option1', descriptionKey: 'services.service1.description', icon: 'fa-solid fa-broom' },
+    { value: 'fillings', labelKey: 'contact.form.option2', descriptionKey: 'services.service2.description', icon: 'fa-solid fa-tooth' },
+    { value: 'endo-treatment', labelKey: 'contact.form.option3', descriptionKey: 'services.service3.description', icon: 'fa-solid fa-syringe' },
+    { value: 'pediatric', labelKey: 'contact.form.option4', descriptionKey: 'services.service4.description', icon: 'fa-solid fa-child' },
+    { value: 'implants', labelKey: 'contact.form.option5', descriptionKey: 'services.service5.description', icon: 'fa-solid fa-teeth' },
+    { value: 'orthodontics', labelKey: 'contact.form.option6', descriptionKey: 'services.service6.description', icon: 'fa-solid fa-tooth' },
+    { value: 'prosthetics', labelKey: 'contact.form.option7', descriptionKey: 'services.service7.description', icon: 'fa-solid fa-hospital' },
+    { value: 'bleaching', labelKey: 'contact.form.option8', descriptionKey: 'services.service8.description', icon: 'fa-solid fa-hand-sparkles' },
 ];
 
 function populateServiceOptions(locale) {
@@ -327,6 +344,50 @@ function renderReviews() {
     `).join('');
 }
 
+function renderServices() {
+    const container = document.getElementById('services-container');
+    if (!container) return;
+
+    container.innerHTML = serviceOptions.map(service => `
+        <div class="swiper-slide bg-slate-50 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:bg-white border border-slate-100 group">
+            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                <i class="${service.icon}"></i>
+            </div>
+            <h4 class="text-xl font-bold text-darkText mb-3">${translations[currentLang][service.labelKey] || service.labelKey}</h4>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">${translations[currentLang][service.descriptionKey] || ''}</p>
+            <a href="#contact" class="text-primary font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+                <span>${translations[currentLang]['services.bookNow'] || 'Book now'}</span>
+            </a>
+        </div>
+    `).join('');
+}
+
+function initServicesSwiper() {
+    if (typeof Swiper !== 'undefined') {
+        servicesSwiper = new Swiper('.services-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.services-swiper .swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    }
+}
+
 function initReviewsSwiper() {
     if (typeof Swiper !== 'undefined') {
         reviewsSwiper = new Swiper('.reviews-swiper', {
@@ -410,11 +471,16 @@ function setLanguage(lang) {
         if (!prefDate.value) prefDate.value = today;
     }
 
-    // Destroy and re-initialize Swiper to handle direction change
+    // Destroy and re-initialize Swipers to handle direction change
     if (reviewsSwiper) {
         reviewsSwiper.destroy(true, true);
     }
+    if (servicesSwiper) {
+        servicesSwiper.destroy(true, true);
+    }
+    renderServices();
     initReviewsSwiper();
+    initServicesSwiper();
 
     const gallerySoundToggle = document.getElementById('gallerySoundToggle');
     if (gallerySoundToggle) updateGallerySoundButton(gallerySoundToggle);
@@ -588,6 +654,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setPreferredDateToday();
     setServicePlaceholderSelected();
     renderReviews(); // Render reviews before initializing Swiper
+    renderServices();
 
     if (typeof AOS !== 'undefined') {
         AOS.init({
@@ -600,6 +667,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Swiper for reviews
     initReviewsSwiper();
+    initServicesSwiper();
     
     // Initialize hero video sound toggle
     initHeroVideoToggle();
@@ -625,19 +693,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLanguage);
     if (mobileLangToggleBtn) mobileLangToggleBtn.addEventListener('click', toggleLanguage);
-    // prevent selecting Fridays and ensure min date
-    const prefDate = document.getElementById('preferredDate');
-    if (prefDate) {
-        prefDate.addEventListener('change', (e) => {
-            if (!prefDate.value) return;
-            const selected = new Date(prefDate.value);
-            if (selected.getDay() === 5) {
-                alert(translations[currentLang]['contact.fridayHoliday'] || 'Friday is a holiday. Please choose another day.');
-                const next = nextNonFriday(prefDate.value);
-                prefDate.value = next;
-            }
-        });
-    }
 });
 
 window.addEventListener('scroll', () => {
@@ -671,18 +726,6 @@ AOS.init({ duration: 800, once: true });
         alert(translations[currentLang]['contact.serviceRequired'] || 'Please select a service from the list before submitting.');
         serviceSelect.focus();
         return;
-    }
-
-    // validation: date not on Friday
-    const prefDate = document.getElementById('preferredDate');
-    if (prefDate && prefDate.value) {
-        const d = new Date(prefDate.value);
-        if (d.getDay() === 5) {
-            alert(translations[currentLang]['contact.fridayHoliday'] || 'Friday is a holiday. Please choose another day.');
-            prefDate.value = nextNonFriday(prefDate.value);
-            prefDate.focus();
-            return;
-        }
     }
 
     const btn = document.getElementById('submitBtn');
