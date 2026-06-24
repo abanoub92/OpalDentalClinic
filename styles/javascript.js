@@ -121,7 +121,7 @@ const translations = {
         'hero.bookConsultation': 'Book your consultation online',
         'hero.browseServices': 'Explore our services',
         'hero.card.title': 'Painless treatment',
-        'hero.card.description': 'Advanced diagnosis systems',
+        'hero.card.description': 'Advanced diagnosis devices',
 
         'stats.clients': 'Happy clients',
         'stats.years': 'Years of team experience',
