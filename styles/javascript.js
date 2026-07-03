@@ -210,14 +210,14 @@ let reviewsSwiper; // Hold the Swiper instance for re-initialization
 let servicesSwiper;
 
 const serviceOptions = [
-    { value: 'implants', labelKey: 'contact.form.option1', descriptionKey: 'services.service1.description', icon: 'fa-solid fa-teeth' },
-    { value: 'prosthetics', labelKey: 'contact.form.option2', descriptionKey: 'services.service2.description', icon: 'fa-solid fa-hospital' },
-    { value: 'fillings', labelKey: 'contact.form.option3', descriptionKey: 'services.service3.description', icon: 'fa-solid fa-tooth' },
-    { value: 'endo-treatment', labelKey: 'contact.form.option4', descriptionKey: 'services.service4.description', icon: 'fa-solid fa-syringe' },
-    { value: 'scaling-polishing', labelKey: 'contact.form.option5', descriptionKey: 'services.service5.description', icon: 'fa-solid fa-broom' },
-    { value: 'pediatric', labelKey: 'contact.form.option6', descriptionKey: 'services.service6.description', icon: 'fa-solid fa-child' },
-    { value: 'orthodontics', labelKey: 'contact.form.option7', descriptionKey: 'services.service7.description', icon: 'fa-solid fa-tooth' },
-    { value: 'bleaching', labelKey: 'contact.form.option8', descriptionKey: 'services.service8.description', icon: 'fa-solid fa-hand-sparkles' },
+    { value: 'implants', labelKey: 'contact.form.option1', descriptionKey: 'services.service1.description', image: 'assets/service_1.jpeg' },
+    { value: 'prosthetics', labelKey: 'contact.form.option2', descriptionKey: 'services.service2.description', image: 'assets/service_7.jpeg' },
+    { value: 'fillings', labelKey: 'contact.form.option3', descriptionKey: 'services.service3.description', image: 'assets/service_4.jpeg' },
+    { value: 'endo-treatment', labelKey: 'contact.form.option4', descriptionKey: 'services.service4.description', image: 'assets/service_5.jpeg' },
+    { value: 'scaling-polishing', labelKey: 'contact.form.option5', descriptionKey: 'services.service5.description', image: 'assets/service_2.jpeg' },
+    { value: 'pediatric', labelKey: 'contact.form.option6', descriptionKey: 'services.service6.description', image: 'assets/service_3.jpeg' },
+    { value: 'orthodontics', labelKey: 'contact.form.option7', descriptionKey: 'services.service7.description', image: 'assets/service_8.jpeg' },
+    { value: 'bleaching', labelKey: 'contact.form.option8', descriptionKey: 'services.service8.description', image: 'assets/service_6.jpeg' },
 ];
 
 function populateServiceOptions(locale) {
@@ -349,15 +349,17 @@ function renderServices() {
     if (!container) return;
 
     container.innerHTML = serviceOptions.map(service => `
-        <div class="swiper-slide bg-slate-50 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:bg-white border border-slate-100 group">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-                <i class="${service.icon}"></i>
+        <div class="swiper-slide bg-slate-50 rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:bg-white border border-slate-100 group">
+            <div class="service-card-image-wrapper">
+                <img src="${service.image}" alt="${translations[currentLang][service.labelKey] || service.labelKey}" class="service-card-image" />
             </div>
-            <h4 class="text-xl font-bold text-darkText mb-3">${translations[currentLang][service.labelKey] || service.labelKey}</h4>
-            <p class="text-slate-600 text-sm leading-relaxed mb-4">${translations[currentLang][service.descriptionKey] || ''}</p>
-            <a href="#contact" class="text-primary font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
-                <span>${translations[currentLang]['services.bookNow'] || 'Book now'}</span>
-            </a>
+            <div class="p-6">
+                <h4 class="text-xl font-bold text-darkText mb-3">${translations[currentLang][service.labelKey] || service.labelKey}</h4>
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">${translations[currentLang][service.descriptionKey] || ''}</p>
+                <a href="#contact" class="text-primary font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+                    <span>${translations[currentLang]['services.bookNow'] || 'Book now'}</span>
+                </a>
+            </div>
         </div>
     `).join('');
 }

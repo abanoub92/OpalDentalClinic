@@ -32,6 +32,25 @@ body {
     animation: customBounce 4s ease-in-out infinite;
 }
 
+.service-card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+}
+
+.service-card-image {
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+}
+
+.group:hover .service-card-image {
+    transform: scale(1.06);
+}
+
 /* Force Swiper slides to be equal height */
 .reviews-swiper .swiper-wrapper {
     align-items: stretch;
@@ -44,4 +63,13 @@ body {
 }
 .services-swiper .swiper-slide {
     height: auto !important;
+}
+
+.footer-credit {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(176, 137, 104, 0.25);
+}
+
+.footer-credit:hover {
+    transform: translateY(-1px);
 }
