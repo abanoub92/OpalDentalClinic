@@ -74,7 +74,7 @@ const translations = {
         'contact.hoursText': 'السبت - الخميس: 10:00 صباحاً - 10:00 مساءً | الجمعة: 02:00 مساءً - 09:00 مساءً',
         'contact.formTitle': 'احجز موعدك أونلاين',
         'contact.form.nameLabel': 'الاسم بالكامل',
-        'contact.form.namePlaceholder': 'أدخل اسمك الكريم',
+        'contact.form.namePlaceholder': 'أدخل اسمك ',
         'contact.form.phoneLabel': 'رقم الهاتف',
         'contact.form.phonePlaceholder': 'xxxx xxx xxxx',
         'contact.form.serviceLabel': 'الخدمة المطلوبة',
